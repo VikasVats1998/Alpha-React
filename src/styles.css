@@ -1,0 +1,55 @@
+.app {
+  display: flex;
+  font-family: Arial, sans-serif;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 10px 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.content {
+  margin-left: 220px; /* Adjust this value based on the width of the sidebar */
+  padding: 20px;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+h1 {
+  color: #ffffff;
+}
+
+.component {
+  background-color: rgb(248, 193, 73);
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+}
+
+.remote-buttons button {
+  padding: 10px;
+}
