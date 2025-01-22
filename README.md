@@ -5,18 +5,33 @@ This project is a React application designed for Crestron CH5. It serves as a te
 ## Project Structure
 
 ```
-crestron-react-app
-├── src
-│   ├── components
-│   │   └── App.jsx          # Main React component
-│   ├── index.jsx            # Entry point of the application
-│   └── styles
-│       └── App.css          # CSS styles for the App component
+├── node_modules             # Directory for npm packages
 ├── public
 │   └── index.html           # HTML template for the application
+├── src
+│   ├── assets
+│   │   └── images
+│   │       └── luca11.jpg   # Example image file
+│   ├── components
+│   │   ├── App.jsx          # Main React component
+│   │   ├── Card.jsx         # Card component
+│   │   ├── Dashboard1.jsx   # Dashboard1 component
+│   │   ├── SourceControl.jsx# SourceControl component
+│   │   └── VolumeControl.jsx# VolumeControl component
+│   ├── context
+│   │   ├── SourceContext.js # Source context
+│   │   └── VolumeContext.js # Volume context
+│   ├── styles
+│   │   ├── App.css          # CSS styles for the App component
+│   │   ├── Dashboard1.css   # CSS styles for the Dashboard1 component
+│   │   └── SourceControl.css# CSS styles for the SourceControl component
+│   ├── utils
+│   │   └── crestronUtils.js # Utility functions for Crestron integration
+│   └── index.jsx            # Entry point of the application
+├── .gitignore               # Git ignore file
 ├── package.json             # npm configuration file
-├── webpack.config.js        # Webpack configuration file
-└── README.md                # Project documentation
+├── README.md                # Project documentation
+└── webpack.config.js        # Webpack configuration file
 ```
 
 ## Getting Started
