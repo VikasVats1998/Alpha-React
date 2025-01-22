@@ -3,18 +3,7 @@ import "./Dashboard.css";
 
 const HeaderComponent = () => {
     return (
-      <header className="header">
-        <div className="header-left">
-          <img src="qr_code.png" alt="QR Code" className="qr-code" />
-          <img src="logo.png" alt="Logo" className="logo" />
-        </div>
-        <div className="header-title">Primary Bedroom</div>
-        <div className="header-right">
-          <button>Itinerary</button>
-          <button>Menu</button>
-          <button>Directory</button>
-        </div>
-      </header>
+      <></>
     );
   };
   
@@ -27,17 +16,7 @@ const HeaderComponent = () => {
     );
   };
   
-  const FooterComponent = () => {
-    return (
-      <footer className="footer">
-        <button>💡</button>
-        <button>🌡️</button>
-        <button>➖</button>
-        <button>⏺️</button>
-      </footer>
-    );
-  };
-  
+ 
   const Dashboard = () => {
     return (
       <div className="dashboard">
@@ -92,7 +71,7 @@ const HeaderComponent = () => {
           </ControlCard>
         </main>
   
-        <FooterComponent />
+       
       </div>
     );
   };

@@ -1,33 +1,10 @@
-import React, { useState } from "react";
-import { sendAnalogJoin, sendDigitalJoin } from "../utils/crestronUtils";
+import React from "react";
+import { increaseVolume, decreaseVolume } from "../utils/crestronUtils"; // Import the functions
+import { useVolumeState, useVolumeDispatch } from "../context/VolumeContext";
 
 function VolumeControl() {
-  const [volume, setVolume] = useState(50);
-
-  const handleVolumeChange = (value) => {
-    setVolume(value);
-    sendAnalogJoin(101, value); // Example analog join
-  };
-
-  const increaseVolume = () => {
-    if (volume < 100) {
-      handleVolumeChange(volume + 0.5);
-      sendDigitalJoin(13, true); // Send digital signal for increase
-      setTimeout(() => {
-        sendDigitalJoin(13, false); // Turn off digital signal after a short delay
-      }, 100);
-    }
-  };
-
-  const decreaseVolume = () => {
-    if (volume > 0) {
-      handleVolumeChange(volume - 0.5);
-      sendDigitalJoin(12, true); // Send digital signal for decrease
-      setTimeout(() => {
-        sendDigitalJoin(12, false); // Turn off digital signal after a short delay
-      }, 100);
-    }
-  };
+  const { volume } = useVolumeState();
+  const dispatch = useVolumeDispatch();
 
   return (
     <div className="component">
@@ -40,8 +17,8 @@ function VolumeControl() {
         disabled
       />
       <p>Volume: {volume}%</p>
-      <button onClick={decreaseVolume}>-</button>
-      <button onClick={increaseVolume}>+</button>
+      <button onClick={() => decreaseVolume(dispatch, volume)}>-</button>
+      <button onClick={() => increaseVolume(dispatch, volume)}>+</button>
     </div>
   );
 }

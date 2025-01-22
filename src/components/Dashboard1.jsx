@@ -1,109 +1,59 @@
-import React, { useState } from "react";
-import { sendAnalogJoin } from "../utils/crestronUtils";
-import './Dashboard1.css';
+import React, { useEffect, Suspense, lazy } from "react";
+import { handleSourceChange, subscribeState } from "../utils/crestronUtils"; // Import the functions
+import { useSourceState, useSourceDispatch } from "../context/SourceContext";
+import "./Dashboard1.css";
+import Card from "./Card";
+import lucaImage from "../assets/images/luca11.jpg"; // Import the image
 
-// Reusable Card Component
-const Card = ({ title, children }) => {
+const SourceControl = lazy(() => import("./SourceControl"));
 
-    const [volume, setVolume] = useState(50);
-    
-      const handleVolumeChange = (value) => {
-        setVolume(value);
-        sendAnalogJoin(101, value); // Example analog join
-      };
-    
-      const increaseVolume = () => {
-        if (volume < 100) {
-          handleVolumeChange(volume + 10);
-        }
-      };
-    
-      const decreaseVolume = () => {
-        if (volume > 0) {
-          handleVolumeChange(volume - 10);
-        }
-      };
-    
-  return (
-    <div className="card">
-      <h2 className="card-title">{title}</h2>
-      <div className="card-content">{children}</div>
-    </div>
-  );
-};
 
-// Dashboard Component
-const Dashboard1 = () => {
+
+function Dashboard1() {
+  
+
   return (
     <div className="dashboard">
-      <header className="header">
-        <h1>OFFICE</h1>
-        <div className="header-controls">
-          <span>Room Scenes</span>
-          <button className="power-button">Room Off</button>
+      <Card title="Climate">
+        <div className="climate-control">
+          <div className="temperature-settings">
+            <p>Cool When: <span>79</span></p>
+            <p>Heat When: <span>63</span></p>
+          </div>
+          <div className="current-temp">
+            <h1>73</h1>
+          </div>
+          <input type="range" min="60" max="80" defaultValue="73" />
         </div>
-      </header>
+      </Card>
 
-      <main className="main-content">
-        <Card title="Lights">
-          <div className="toggle-buttons">
-            <button>Off</button>
-            <button>On</button>
-          </div>
-        </Card>
+      <Card title="Audio">
+        <img src={lucaImage} alt="Luca" className="audio-image" /> {/* Use the imported image */}
+        <div className="toggle-buttons">
+          <button>Off</button>
+          <button>On</button>
+        </div>
+      </Card>
 
-        <Card title="Climate">
-          <div className="climate-control">
-            <div className="temperature-settings">
-              <p>Cool When: <span>79</span></p>
-              <p>Heat When: <span>63</span></p>
-            </div>
-            <div className="current-temp">
-              <h1>73</h1>
-            </div>
-            <input type="range" min="60" max="80" defaultValue="73" />
-          </div>
-        </Card>
+      <Suspense fallback={<div>Loading...</div>}>
+        <SourceControl />
+      </Suspense>
 
-        <Card title="Audio">
-          <img src="/path-to-image/luca.jpg" alt="Luca" className="audio-image" />
-          <div className="toggle-buttons">
-            <button>Off</button>
-            <button>On</button>
-          </div>
-        </Card>
+      <Card title="Shades">
+        <div className="toggle-buttons">
+          <button>Close</button>
+          <button>Open</button>
+        </div>
+      </Card>
 
-        <Card title="Video">
-          <select>
-            <option>Iphone</option>
-            <option>Android</option>
-            <option>Source</option>
-          </select>
-          <div className="toggle-buttons">
-            <button>Off</button>
-            <button>On</button>
-          </div>
-        </Card>
+      <Card title="Security">
+        <p>DISARMED</p>
+        <button>Go to Full Security Page</button>
+      </Card>
 
-        <Card title="Shades">
-          <div className="toggle-buttons">
-            <button>Close</button>
-            <button>Open</button>
-          </div>
-        </Card>
-
-        <Card title="Security">
-          <p>DISARMED</p>
-          <button>Go to Full Security Page</button>
-        </Card>
-      </main>
-
-      <footer className="footer">
-        <p>7:03 AM</p>
-        <p>SIGNOR VESPA</p>
-      </footer>
+      
     </div>
   );
-};
+}
 
 export default Dashboard1;

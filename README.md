@@ -37,13 +37,43 @@ To get started with the project, follow these steps:
    ```
    npm install
    ```
+4. Update the package.json file to include the following scripts
+   ```   
+  "scripts": {
+    "start": "webpack serve --config webpack.config.js",
+    "build": "webpack --config webpack.config.js",
+    "build:archive": "ch5-cli archive -p basics -d dist -o tsw"
+  },
+  ```
 
-4. Start the development server:
+5. Open the following file: node_modules/@crestron/ch5-crcomlib/package. json and replace the following lines:
+   ```
+   "types": "build_bundles/umd/@types/index.d.ts"
+
+   with
+
+  "types": "build_bundles/cjs/@types/index.d.ts",
+  "main": "build_bundles/cjs/cr-com-lib.js",
+
+   ```
+
+6. Start the development server:
    ```
    npm start
    ```
+7. Add files to .gitignore
+   ```
+   /node_modules
+   /dist
+   /.cache
+   /tsw
 
-5. Open your browser and go to `http://localhost:8080` to view the application.
+   ```
+8. Creating TSW file
+   ```
+   npm run build
+   npm run build:archive
+   ```
 
 ## Building the Application
 
